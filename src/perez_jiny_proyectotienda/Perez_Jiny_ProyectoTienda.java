@@ -7,7 +7,7 @@ package perez_jiny_proyectotienda;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Perez_Jiny_ProyectoTienda {
+ public class Perez_Jiny_ProyectoTienda {
 
     public static void main(String[] args) {
         Scanner lea = new Scanner(System.in).useDelimiter("\n");
@@ -15,7 +15,7 @@ public class Perez_Jiny_ProyectoTienda {
         //Declaracion de variables
         int opcionMenu = 0;
         //Variables para restricciones del estado del sistema.
-        boolean abrirCaja = false, compra = false, cerrarCaja = false;
+        boolean abrirCaja = false, compra = false, cerrarCaja = false, salirmenu=false;
         //Variables para caja, ventas y compras.
         String producto = "";
         double caja = 0, cantidadIngresada = 0, isv = 0, cantKilosVenta = 0;
@@ -28,7 +28,7 @@ public class Perez_Jiny_ProyectoTienda {
         double cantVendidaAzucar = 0, cantVendidaAvena = 0, cantVendidaTrigo = 0, cantVendidaMaiz = 0;
 
         //Ciclo principal, se ejecuta hasta la opcion 6.
-        while (opcionMenu != 6) {
+        while (!salirmenu) {
             try {
                 //Impresión de menu principal.
                 System.out.println(" ___________________________________________________________________");
@@ -742,10 +742,17 @@ public class Perez_Jiny_ProyectoTienda {
                         }
                         break;
                     case 6:
-                        // Opción para salir del sistema.
-                        System.out.println("\nSaliendo del sistema...");
-                        break;
-
+                    // Validación si no cierra caja antes.
+                    
+                    if(!abrirCaja || cerrarCaja){
+                         System.out.println("\nSaliendo del sistema...");
+                         salirmenu=true;
+                        break;  
+                    } else {
+                       System.out.println("\nNo puedes salir del sistema sin cerrar la caja primero.");
+                       System.out.println("Por favor, realiza el cierre de caja antes de salir.");
+                       break;
+                    }  
                     default:
                         // Impresión de error cuando la opción esta fuera del rango.
                         System.out.println("\n--------------------------------------------------------------------");
