@@ -64,44 +64,59 @@ public class Perez_Jiny_ProyectoTienda {
                             productoEstrella = "";
                             productoMayorGanancia = "";
                             productoMayorGasto = "";
-                        }
 
-                        //Estados de la caja.
-                        abrirCaja = true;
-                        cerrarCaja = false;
+                            //Estados de la caja.
+                            abrirCaja = true;
+                            cerrarCaja = false;
 
-                        System.out.println("____________________________________________________________________");
-                        System.out.println("                        ABRIR CAJA - TIENDA JAVA                    ");
-                        System.out.println("____________________________________________________________________\n");
+                            System.out.println("____________________________________________________________________");
+                            System.out.println("                        ABRIR CAJA - TIENDA JAVA                    ");
+                            System.out.println("____________________________________________________________________\n");
+                            System.out.println("                      Se ha abierto la caja correctamente.          ");
+                            System.out.println("--------------------------------------------------------------------");
+                            System.out.println(String.format("%-55s L. %.2f", "Cantidad en Caja:", caja));
+                            System.out.println("____________________________________________________________________");
+                            System.out.println("");
+                            System.out.println("Regresando al menu...\n");
+                        } else {
 
-                        //Ciclo para ingresar una cantidad de dinero.
-                        while (true) {
-                            try {
-                                System.out.print("Ingrese la cantidad de dinero que desea guardar en caja: ");
-                                cantidadIngresada = lea.nextDouble();
+                            //Estados de la caja.
+                            abrirCaja = true;
+                            cerrarCaja = false;
 
-                                //Validacion sobre si la cantidad es positva.
-                                if (cantidadIngresada <= 0) {
-                                    System.out.println("Error: Ingrese una cantidad valida.\n");
-                                    System.out.println("--------------------------------------------------------------------\n");
-                                } else {
-                                    //Actualizacion de caja y confirmacion de que ha sido guardado el monto.
-                                    caja += cantidadIngresada;
+                            System.out.println("____________________________________________________________________");
+                            System.out.println("                        ABRIR CAJA - TIENDA JAVA                    ");
+                            System.out.println("____________________________________________________________________\n");
+
+                            //Ciclo para ingresar una cantidad de dinero.
+                            while (true) {
+                                try {
+                                    System.out.print("Ingrese la cantidad de dinero que desea guardar en caja: ");
+                                    cantidadIngresada = lea.nextDouble();
+
+                                    //Validacion sobre si la cantidad es positva.
+                                    if (cantidadIngresada <= 0) {
+                                        System.out.println("Error: Ingrese una cantidad valida.\n");
+                                        System.out.println("--------------------------------------------------------------------\n");
+                                    } else {
+                                        //Actualizacion de caja y confirmacion de que ha sido guardado el monto.
+                                        caja += cantidadIngresada;
+                                        System.out.println("--------------------------------------------------------------------");
+                                        System.out.println("                      Se ha guardado correctamente.                ");
+                                        System.out.println("--------------------------------------------------------------------");
+                                        System.out.println(String.format("%-55s L. %.2f", "Cantidad Guardada:", cantidadIngresada));
+                                        System.out.println(String.format("%-55s L. %.2f", "Cantidad Total:", caja));
+                                        System.out.println("____________________________________________________________________");
+                                        System.out.println("");
+                                        System.out.println("Regresando al menu...\n");
+                                        break;
+                                    }
+                                } catch (InputMismatchException e) {
+                                    //Impresión de error para entrada no numérica.
+                                    System.out.println("Error: Ingrese datos numericos.\n ");
                                     System.out.println("--------------------------------------------------------------------");
-                                    System.out.println("                      Se ha guardado correctamente.                ");
-                                    System.out.println("--------------------------------------------------------------------");
-                                    System.out.println(String.format("%-55s L. %.2f", "Cantidad Guardada:", cantidadIngresada));
-                                    System.out.println(String.format("%-55s L. %.2f", "Cantidad Total:", caja));
-                                    System.out.println("____________________________________________________________________");
-                                    System.out.println("");
-                                    System.out.println("Regresando al menu...\n");
-                                    break;
+                                    lea.next();
                                 }
-                            } catch (InputMismatchException e) {
-                                //Impresión de error para entrada no numérica.
-                                System.out.println("Error: Ingrese datos numericos.\n ");
-                                System.out.println("--------------------------------------------------------------------");
-                                lea.next();
                             }
                         }
                         break;
@@ -255,7 +270,7 @@ public class Perez_Jiny_ProyectoTienda {
                                     System.out.println("\n--------------------------------------------------------------------");
                                     System.out.println("            Error: No hay stock disponible de este producto.        ");
                                     System.out.println("--------------------------------------------------------------------\n");
-                                    System.out.print("¿Desea elegir otro producto? (SI/NO): ");
+                                    System.out.print("Desea elegir otro producto (SI/NO): ");
                                     adquirirProducto = lea.next().toUpperCase();
                                     if (adquirirProducto.equals("SI")) {
                                         continue;
@@ -584,8 +599,9 @@ public class Perez_Jiny_ProyectoTienda {
                                     }
                                     break;
                                 } catch (InputMismatchException e) {
-                                    //Impresion de error para entrada no númericas.                                   
-                                    System.out.println("Error: Ingrese una cantidad numerica valida.\n");
+                                    //Impresion de error para entrada no númericas.  
+                                    System.out.println("\n--------------------------------------------------------------------");
+                                    System.out.println("            Error: Ingrese una cantidad numerica valida.               ");
                                     System.out.println("--------------------------------------------------------------------\n");
                                     lea.next();
                                 }
@@ -594,12 +610,13 @@ public class Perez_Jiny_ProyectoTienda {
                         break;
                     case 4:
                         //
-                         if (!abrirCaja) {
-                            System.out.println("Error: No es posible abrir Reporte, primero debe abrir caja.\n");
+                        if (!abrirCaja) {
+                            System.out.println("\n--------------------------------------------------------------------\n");
+                            System.out.println("     Error: No es posible abrir Reporte, primero debe abrir caja.     ");
                             System.out.println("--------------------------------------------------------------------\n");
                             break;
                         }
-                         
+
                         //Calculó de margen de ganancia entre venta y compra.
                         margenGanancia = totalVenta - totalCompra;
 
@@ -666,11 +683,11 @@ public class Perez_Jiny_ProyectoTienda {
                             System.out.println("--------------------------------------------------------------------\n");
                             break;
                         }
-                        
+
                         // Verificar si la caja ya fue cerrada
                         if (cerrarCaja) {
                             System.out.println("\n--------------------------------------------------------------------");
-                            System.out.println(     "Error: La caja ya ha sido cerrada. Debe abrir caja nuevamente.    ");
+                            System.out.println("     Error: La caja ya ha sido cerrada. Debe abrir caja nuevamente.   ");
                             System.out.println("--------------------------------------------------------------------\n");
                             break;
                         }
@@ -698,7 +715,7 @@ public class Perez_Jiny_ProyectoTienda {
                                     System.out.println("Error: Ingrese una cantidad válida.\n");
                                     System.out.println("--------------------------------------------------------------------\n");
                                 } else if (montoDepositado > maximoDeposito) {
-                                    System.out.println("Error: El monto excede el 60% permitido. Máximo a depositar: L. " + maximoDeposito);
+                                    System.out.println("Error: El monto excede el 60% permitido. Maximo a depositar: L. " + maximoDeposito);
                                     System.out.println("--------------------------------------------------------------------\n");
                                 } else {
                                     //Actualización de caja y confrimación de cierre.
@@ -718,7 +735,7 @@ public class Perez_Jiny_ProyectoTienda {
                             } catch (InputMismatchException e) {
                                 //Impresión de error cuando es un valor no numerico.
                                 System.out.println("\n--------------------------------------------------------------------");
-                                System.out.println("Error: Ingrese un valor numérico válido.");
+                                System.out.println("                 Error: Ingrese un valor numérico válido.             ");
                                 System.out.println("--------------------------------------------------------------------\n");
                                 lea.next();
                             }
