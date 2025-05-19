@@ -385,7 +385,7 @@ public class Perez_Jiny_ProyectoTienda {
                         System.out.println("--------------------------------------------------------------------");
                         System.out.println(String.format("%-50s L. %.2f", "Subtotal:", subtotalVenta));
                         System.out.println(String.format("%-50s L. %.2f", "Descuento " + porcentDescuento + ":", descuento));
-                        System.out.println(String.format("%-50s L. %.2f", "ISV:", isv));
+                        System.out.println(String.format("%-50s L. %.2f", "ISV %7:", isv));
                         System.out.println("--------------------------------------------------------------------");
                         System.out.println(String.format("%-50s L. %.2f", "TOTAL A PAGAR:", totalPagarVenta));
                         System.out.println("--------------------------------------------------------------------");
@@ -529,8 +529,7 @@ public class Perez_Jiny_ProyectoTienda {
                                     //Calculos sobre la compra.
                                     totalProductoCompra = cantKilosCompra * precioUniCompra;
                                     subtotalCompra += totalProductoCompra;
-                                    isv = subtotalCompra * 0.07;
-                                    totalPagarCompra = subtotalCompra + isv;
+                                    totalPagarCompra = subtotalCompra;
 
                                     //Verificación si en caja hay saldo suficiente.
                                     if (caja >= totalPagarCompra) {
@@ -558,14 +557,13 @@ public class Perez_Jiny_ProyectoTienda {
                                         System.out.println("                              TIENDA JAVA                           ");
                                         System.out.println("                                FACTURA                             ");
                                         System.out.println("____________________________________________________________________");
-                                        System.out.println("Tipo de Cliente: " + proveedor);
+                                        System.out.println("Tipo de Proveedor: " + proveedor);
                                         System.out.println("--------------------------------------------------------------------");
                                         System.out.println("Producto       Cantidad(kg)       Precio Unit.       Total");
                                         System.out.println("--------------------------------------------------------------------");
                                         System.out.println(facturaCompra);
                                         System.out.println("--------------------------------------------------------------------");
                                         System.out.println(String.format("%-55s L. %.2f", "Subtotal:", subtotalCompra));
-                                        System.out.println(String.format("%-55s L. %.2f", "ISV:", isv));
                                         System.out.println("--------------------------------------------------------------------");
                                         System.out.println(String.format("%-55s L. %.2f", "TOTAL A PAGAR:", totalPagarCompra));
                                         System.out.println("--------------------------------------------------------------------");
@@ -643,15 +641,16 @@ public class Perez_Jiny_ProyectoTienda {
                         System.out.println("____________________________________________________________________");
                         System.out.println(String.format("%-50s L. %.2f", "Cantidad Actual:", caja));
                         System.out.println("--------------------------------------------------------------------");
-                        System.out.println(String.format("%-50s %d", "Numero de Compras:", numeroCompras));
-                        System.out.println(String.format("%-50s %d", "Numero de Ventas:", numeroVentas));
+                        System.out.println(String.format("%-50s %d", "Compras Realizadas:", numeroCompras));
+                        System.out.println(String.format("%-50s L. %.2f", "Gasto sobre Compra:", totalCompra));
                         System.out.println("--------------------------------------------------------------------");
-                        System.out.println(String.format("%-50s L. %.2f", "Total de Venta:", totalVenta));
-                        System.out.println(String.format("%-50s L. %.2f", "Total de Compra:", totalCompra));
+                        System.out.println(String.format("%-50s %d", "Ventas Realizadas:", numeroVentas));
+                        System.out.println(String.format("%-50s L. %.2f", "Ganancias sobre Venta:", totalVenta));
+                        System.out.println("--------------------------------------------------------------------");
                         System.out.println(String.format("%-50s L. %.2f", "Margen de Ganancia:", margenGanancia));
                         System.out.println("--------------------------------------------------------------------");
-                        System.out.println(String.format("%-50s L. %.2f", "Valor Medio de Venta:", valorMedioVenta));
-                        System.out.println(String.format("%-50s L. %.2f", "Valor Medio Compra:", valorMedioCompra));
+                        System.out.println(String.format("%-50s L. %.2f", "Promedio de Venta:", valorMedioVenta));
+                        System.out.println(String.format("%-50s L. %.2f", "Promedio de Compra:", valorMedioCompra));
                         System.out.println("--------------------------------------------------------------------");
                         System.out.println(String.format("%-50s L. %.2f", "Venta con Mayor Ganancia:", mayorGananciaVentas));
                         System.out.println(String.format("%-50s L. %.2f", "Compra con Mayor Gasto:", mayorGastoCompra));
@@ -662,14 +661,16 @@ public class Perez_Jiny_ProyectoTienda {
                     case 5:
                         //Requisito para cerrar caja.
                         if (!abrirCaja) {
-                            System.out.println("Error: No es posible cerrar caja, primero debe abrir caja.\n");
+                            System.out.println("\n--------------------------------------------------------------------");
+                            System.out.println("       Error: No es posible cerrar caja, primero debe abrir caja.     ");
                             System.out.println("--------------------------------------------------------------------\n");
                             break;
                         }
                         
                         // Verificar si la caja ya fue cerrada
                         if (cerrarCaja) {
-                            System.out.println("Error: La caja ya ha sido cerrada. Debe abrir caja nuevamente.\n");
+                            System.out.println("\n--------------------------------------------------------------------");
+                            System.out.println(     "Error: La caja ya ha sido cerrada. Debe abrir caja nuevamente.    ");
                             System.out.println("--------------------------------------------------------------------\n");
                             break;
                         }
@@ -711,11 +712,13 @@ public class Perez_Jiny_ProyectoTienda {
                                     System.out.println(String.format("%-50s L. %.2f", "Monto depositado en banco:", montoDepositado));
                                     System.out.println(String.format("%-50s L. %.2f", "Efectivo restante en caja:", caja));
                                     System.out.println("____________________________________________________________________\n");
+                                    abrirCaja = false;
                                     break;
                                 }
                             } catch (InputMismatchException e) {
                                 //Impresión de error cuando es un valor no numerico.
-                                System.out.println("Error: Ingrese un valor numérico válido.\n");
+                                System.out.println("\n--------------------------------------------------------------------");
+                                System.out.println("Error: Ingrese un valor numérico válido.");
                                 System.out.println("--------------------------------------------------------------------\n");
                                 lea.next();
                             }
