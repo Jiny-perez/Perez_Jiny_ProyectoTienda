@@ -11,16 +11,16 @@ public class Perez_Jiny_ProyectoTienda {
 
     public static void main(String[] args) {
         Scanner lea = new Scanner(System.in).useDelimiter("\n");
-        
-       //Declaracion de variables
-        int opcionMenu = 0;      
+
+        //Declaracion de variables
+        int opcionMenu = 0;
         //Variables para restricciones del estado del sistema.
         boolean abrirCaja = false, compra = false, cerrarCaja = false;
         //Variables para caja, ventas y compras.
-        String producto = ""; 
-        double caja = 0, cantidadIngresada = 0, isv = 0, cantKilosVenta = 0;   
+        String producto = "";
+        double caja = 0, cantidadIngresada = 0, isv = 0, cantKilosVenta = 0;
         double stockAzucar = 0, stockAvena = 0, stockMaiz = 0, stockTrigo = 0;
-         //Variables para reportes.
+        //Variables para reportes.
         int numeroCompras = 0, numeroVentas = 0;
         double totalVenta = 0, totalCompra = 0, mayorGastoCompra = 0, mayorGananciaVentas = 0;
         String productoMayorGanancia = "", productoMayorGasto = "", productoEstrella = "";
@@ -29,7 +29,7 @@ public class Perez_Jiny_ProyectoTienda {
 
         //Ciclo principal, se ejecuta hasta la opcion 6.
         while (opcionMenu != 6) {
-            try {         
+            try {
                 //Impresión de menu principal.
                 System.out.println(" ___________________________________________________________________");
                 System.out.println("|                            TIENDA JAVA                            |");
@@ -65,7 +65,7 @@ public class Perez_Jiny_ProyectoTienda {
                             productoMayorGanancia = "";
                             productoMayorGasto = "";
                         }
-                        
+
                         //Estados de la caja.
                         abrirCaja = true;
                         cerrarCaja = false;
@@ -73,15 +73,15 @@ public class Perez_Jiny_ProyectoTienda {
                         System.out.println("____________________________________________________________________");
                         System.out.println("                        ABRIR CAJA - TIENDA JAVA                    ");
                         System.out.println("____________________________________________________________________\n");
-                        
+
                         //Ciclo para ingresar una cantidad de dinero.
                         while (true) {
                             try {
                                 System.out.print("Ingrese la cantidad de dinero que desea guardar en caja: ");
                                 cantidadIngresada = lea.nextDouble();
-                                
+
                                 //Validacion sobre si la cantidad es positva.
-                                if (cantidadIngresada <= 0) {                                    
+                                if (cantidadIngresada <= 0) {
                                     System.out.println("Error: Ingrese una cantidad valida.\n");
                                     System.out.println("--------------------------------------------------------------------\n");
                                 } else {
@@ -105,7 +105,7 @@ public class Perez_Jiny_ProyectoTienda {
                             }
                         }
                         break;
-                    case 2:  
+                    case 2:
                         //Requisitos para entrar a venta.
                         if (!abrirCaja) {
                             System.out.println("\n--------------------------------------------------------------------");
@@ -127,7 +127,7 @@ public class Perez_Jiny_ProyectoTienda {
                         //Variables para la validacion de tipos de clientes.
                         String tipoClienteVenta;
                         char clienteVenta;
-                        
+
                         //Selección y manejo de tipo de clientes.
                         while (true) {
                             System.out.print("Ingrese el tipo del cliente (A, B o C): ");
@@ -138,10 +138,10 @@ public class Perez_Jiny_ProyectoTienda {
                                 break;
                             } else {
                                 System.out.println("Error: Ingrese una opcion valida (A, B o C).\n");
-                                System.out.println("--------------------------------------------------------------------\n"); 
+                                System.out.println("--------------------------------------------------------------------\n");
                             }
                         }
-                        
+
                         //Variables para el proceso de ventas.
                         int codProductoVenta = 0;
                         String facturaVenta = "",
@@ -152,7 +152,7 @@ public class Perez_Jiny_ProyectoTienda {
                          subtotalVenta = 0,
                          descuento = 0,
                          totalPagarVenta = 0;
-                        
+
                         //Ciclo para adqurir otro producto en ventas.
                         do {
                             //Impresión sobre los productos de tienda Java.
@@ -183,7 +183,7 @@ public class Perez_Jiny_ProyectoTienda {
                                     lea.next();
                                 }
                             }
-                            
+
                             //Asignación de producto y precio según el código y validación de disponibilidad sobre el producto por el tipo de cliente.
                             boolean tipoProducto = true;
                             switch (codProductoVenta) {
@@ -229,19 +229,27 @@ public class Perez_Jiny_ProyectoTienda {
                                     tipoProducto = false;
                                     break;
                             }
-                            
+
                             //Si el producto corresponde al cliente, procesar la venta.
                             if (tipoProducto) {
                                 //Comprobación de stock disponible sobre el producto seleccionado .
                                 double stockDisponible = 0;
                                 switch (codProductoVenta) {
-                                    case 1: stockDisponible = stockAzucar; break;
-                                    case 2: stockDisponible = stockAvena; break;
-                                    case 3: stockDisponible = stockTrigo; break;
-                                    case 4: stockDisponible = stockMaiz; break;
+                                    case 1:
+                                        stockDisponible = stockAzucar;
+                                        break;
+                                    case 2:
+                                        stockDisponible = stockAvena;
+                                        break;
+                                    case 3:
+                                        stockDisponible = stockTrigo;
+                                        break;
+                                    case 4:
+                                        stockDisponible = stockMaiz;
+                                        break;
                                 }
                                 System.out.println(String.format("Stock disponible de %s: %.2f kg", producto, stockDisponible));
-                                
+
                                 //Veficación si hay stock suficiente.
                                 if (stockDisponible <= 0) {
                                     System.out.println("\n--------------------------------------------------------------------");
@@ -250,12 +258,12 @@ public class Perez_Jiny_ProyectoTienda {
                                     System.out.print("¿Desea elegir otro producto? (SI/NO): ");
                                     adquirirProducto = lea.next().toUpperCase();
                                     if (adquirirProducto.equals("SI")) {
-                                        continue; 
+                                        continue;
                                     } else {
-                                        break; 
+                                        break;
                                     }
                                 }
-                                
+
                                 //Ingreso de la cantidad a vender.
                                 boolean cantidadValida = false;
                                 while (!cantidadValida) {
@@ -291,14 +299,14 @@ public class Perez_Jiny_ProyectoTienda {
                                             System.out.println("\n--------------------------------------------------------------------");
                                             System.out.println("          Error: No hay suficiente cantidad de productos.            ");
                                             System.out.println("--------------------------------------------------------------------\n");
-                                            
+
                                             System.out.print("Desea intentar con una cantidad menor (SI/NO): ");
                                             String intentarDeNuevo = lea.next().toUpperCase();
                                             if (intentarDeNuevo.equals("SI")) {
-                                                continue; 
+                                                continue;
                                             } else {
-                                                adquirirProducto = "NO"; 
-                                                cantidadValida = true; 
+                                                adquirirProducto = "NO";
+                                                cantidadValida = true;
                                                 break;
                                             }
                                         }
@@ -318,23 +326,26 @@ public class Perez_Jiny_ProyectoTienda {
                                     }
                                 }
                             }
-                            
+
                             //Verifica si quiere adquirir otro producto.
                             if (!adquirirProducto.equals("NO")) {
-                                System.out.print("Desea comprar otro producto (SI/NO): ");
-                                adquirirProducto = lea.next().toUpperCase();
+                                boolean respuestaCompraValida = false;
+                                while (!respuestaCompraValida) {
+                                    System.out.print("Desea comprar otro producto (SI/NO): ");
+                                    adquirirProducto = lea.next().toUpperCase();
+
+                                    if (adquirirProducto.equals("SI") || adquirirProducto.equals("NO")) {
+                                        respuestaCompraValida = true;
+                                    } else { //Verifica si se realizó alguna venta.
+                                        System.out.println("\n--------------------------------------------------------------------");
+                                        System.out.println("                   Error: Debe ingresar SI o NO.                      ");
+                                        System.out.println("--------------------------------------------------------------------\n");
+                                    }
+                                }
                             }
 
                         } while (adquirirProducto.equals("SI"));
-                        
-                        //Verifica si se realizó alguna venta.
-                        if (subtotalVenta <= 0) {
-                            System.out.println("\n--------------------------------------------------------------------");
-                            System.out.println("                    No se ha realizado ninguna venta.                 ");
-                            System.out.println("--------------------------------------------------------------------\n");
-                            break;
-                        }
-                        
+
                         //Calculos sobre el descuento dependiendo del subtotal.
                         if (subtotalVenta > 5000) {
                             descuento = subtotalVenta * 0.10;
@@ -350,17 +361,17 @@ public class Perez_Jiny_ProyectoTienda {
                         //Calculó de impuestos y total a pagar.                        
                         isv = subtotalVenta * 0.07;
                         totalPagarVenta = (subtotalVenta - descuento) + isv;
-                        
+
                         //Actualización de caja y estaditicas de venta para reporte.
                         caja += totalPagarVenta;
                         numeroVentas++;
                         totalVenta += totalPagarVenta;
-                        
+
                         //Registro de venta con mayor ganancia.
                         if (totalPagarVenta > mayorGananciaVentas) {
                             mayorGananciaVentas = totalPagarVenta;
                         }
-                        
+
                         //Impresión de factura de venta.
                         System.out.println("\n____________________________________________________________________");
                         System.out.println("                           TIENDA JAVA                                ");
@@ -395,8 +406,8 @@ public class Perez_Jiny_ProyectoTienda {
                         System.out.println("____________________________________________________________________");
                         System.out.println(String.format("%-55s L. %.2f", "Cantidad en Caja:", caja));
                         System.out.println("--------------------------------------------------------------------\n");
-                        
-                         //Variables para el tipo proveedor.                       
+
+                        //Variables para el tipo proveedor.                       
                         String tipoProveedor;
                         char proveedor;
 
@@ -413,7 +424,7 @@ public class Perez_Jiny_ProyectoTienda {
                                 System.out.println("--------------------------------------------------------------------\n");
                             }
                         }
-                        
+
                         //Variables para el proceso de compras.
                         int codProductoCompra = 0;
                         String facturaCompra = "";
@@ -422,7 +433,7 @@ public class Perez_Jiny_ProyectoTienda {
                         double totalProductoCompra = 0,
                          subtotalCompra = 0,
                          totalPagarCompra = 0;
-                        
+
                         //Impresion de catálogo de productos para comprar.
                         System.out.println(" ___________________________________________________________________");
                         System.out.println("| Codigo                            |  Producto                     |");
@@ -432,7 +443,7 @@ public class Perez_Jiny_ProyectoTienda {
                         System.out.println("| 3                                 |  Trigo                        |");
                         System.out.println("| 4                                 |  Maiz                         |");
                         System.out.println("|___________________________________________________________________|\n");
-                        
+
                         //Validación del código de producto.
                         while (true) {
                             try {
@@ -451,7 +462,7 @@ public class Perez_Jiny_ProyectoTienda {
                                 lea.next();
                             }
                         }
-                        
+
                         // Asignación de producto y precio según código y validación de disponibilidad por tipo de proveedor.
                         boolean tipoCompra = true;
                         switch (codProductoCompra) {
@@ -500,7 +511,7 @@ public class Perez_Jiny_ProyectoTienda {
                                 tipoCompra = false;
                                 break;
                         }
-                        
+
                         //Si el producto corresponde al proveedor, procesar la compra.
                         if (tipoCompra) {
                             while (true) {
@@ -520,7 +531,7 @@ public class Perez_Jiny_ProyectoTienda {
                                     subtotalCompra += totalProductoCompra;
                                     isv = subtotalCompra * 0.07;
                                     totalPagarCompra = subtotalCompra + isv;
-                                    
+
                                     //Verificación si en caja hay saldo suficiente.
                                     if (caja >= totalPagarCompra) {
                                         //Actualizar el stock del producto a comprar.
@@ -535,13 +546,13 @@ public class Perez_Jiny_ProyectoTienda {
                                         }
 
                                         facturaCompra = String.format("%-19s %-19s %-10.2s L. %.2f\n", producto, String.format("%.0f", cantKilosCompra), String.format("%.0f", precioUniCompra), totalProductoCompra);
-                                        
+
                                         //Registro de producto con mayor gasto.
                                         if (totalPagarCompra > mayorGastoCompra) {
                                             mayorGastoCompra = totalPagarCompra;
                                             productoMayorGasto = producto;
                                         }
-                                        
+
                                         //Impresion de la factura compra.
                                         System.out.println("\n____________________________________________________________________");
                                         System.out.println("                              TIENDA JAVA                           ");
@@ -561,16 +572,16 @@ public class Perez_Jiny_ProyectoTienda {
                                         System.out.println("                          GRACIAS POR SU COMPRA.                     ");
                                         System.out.println("____________________________________________________________________\n");
 
-                                       //Actualización de caja y estadistica de compras para reporte.                                       
+                                        //Actualización de caja y estadistica de compras para reporte.                                       
                                         caja -= totalPagarCompra;
                                         totalCompra += totalPagarCompra;
                                         numeroCompras++;
                                         compra = true;
                                     } else {
                                         //Mensaje si no hay saldo suficiente.
-                                        System.out.println("\n--------------------------------------------------------------------");                                     
+                                        System.out.println("\n--------------------------------------------------------------------");
                                         System.out.println("Error: No se puede realizar la compra, saldo insuficiente.");
-                                        System.out.println("Disponiblidad: L."+ caja);
+                                        System.out.println("Disponiblidad: L." + caja);
                                         System.out.println("--------------------------------------------------------------------\n");
                                     }
                                     break;
@@ -585,7 +596,7 @@ public class Perez_Jiny_ProyectoTienda {
                         break;
                     case 4:
                         //Calculó de margen de ganancia entre venta y compra.
-                        margenGanancia = totalVenta- totalCompra;
+                        margenGanancia = totalVenta - totalCompra;
 
                         //Calculó del valor medio de venta y compra.
                         if (numeroVentas > 0) {
@@ -599,7 +610,7 @@ public class Perez_Jiny_ProyectoTienda {
                         } else {
                             valorMedioCompra = 0;
                         }
-                        
+
                         //Verificación sobre cual es el producto estrella.
                         if (cantVendidaAzucar > maxCantVendida) {
                             maxCantVendida = cantVendidaAzucar;
@@ -617,7 +628,7 @@ public class Perez_Jiny_ProyectoTienda {
                             maxCantVendida = cantVendidaMaiz;
                             productoEstrella = "Maiz";
                         }
-                        
+
                         //Impresion y resultados sobre venta y compra.
                         System.out.println("\n____________________________________________________________________");
                         System.out.println("                             TIENDA JAVA                              ");
@@ -648,7 +659,7 @@ public class Perez_Jiny_ProyectoTienda {
                             System.out.println("--------------------------------------------------------------------\n");
                             break;
                         }
-                        
+
                         //Variables para el cierre caja.
                         double maximoDeposito = caja * 0.60;
                         double montoDepositado = 0;
@@ -660,13 +671,13 @@ public class Perez_Jiny_ProyectoTienda {
                         System.out.println(String.format("%-50s L. %.2f", "Total de Ganancias:", caja));
                         System.out.println(String.format("%-50s L. %.2f", "Maximo a depositar en banco 60%:", maximoDeposito));
                         System.out.println("--------------------------------------------------------------------");
-                        
+
                         //Selección y validación cantidad a depositar.
                         while (true) {
                             try {
                                 System.out.print("Ingrese la cantidad que desea depositar en el banco: ");
                                 montoDepositado = lea.nextDouble();
-                                
+
                                 //Validación de monto positivo.
                                 if (montoDepositado < 0) {
                                     System.out.println("Error: Ingrese una cantidad válida.\n");
@@ -697,12 +708,12 @@ public class Perez_Jiny_ProyectoTienda {
                         }
                         break;
                     case 6:
-                          // Opción para salir del sistema.
+                        // Opción para salir del sistema.
                         System.out.println("Saliendo del sistema...");
                         break;
 
                     default:
-                          // Impresión de error cuando la opción esta fuera del rango.
+                        // Impresión de error cuando la opción esta fuera del rango.
                         System.out.println("\n--------------------------------------------------------------------");
                         System.out.println("        Error: Opcion invalida. Ingrese una opcion del (1 - 6).       ");
                         System.out.println("--------------------------------------------------------------------\n");
