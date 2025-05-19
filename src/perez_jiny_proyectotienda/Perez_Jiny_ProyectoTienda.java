@@ -595,6 +595,13 @@ public class Perez_Jiny_ProyectoTienda {
                         }
                         break;
                     case 4:
+                        //
+                         if (!abrirCaja) {
+                            System.out.println("Error: No es posible abrir Reporte, primero debe abrir caja.\n");
+                            System.out.println("--------------------------------------------------------------------\n");
+                            break;
+                        }
+                         
                         //Calculó de margen de ganancia entre venta y compra.
                         margenGanancia = totalVenta - totalCompra;
 
@@ -659,6 +666,13 @@ public class Perez_Jiny_ProyectoTienda {
                             System.out.println("--------------------------------------------------------------------\n");
                             break;
                         }
+                        
+                        // Verificar si la caja ya fue cerrada
+                        if (cerrarCaja) {
+                            System.out.println("Error: La caja ya ha sido cerrada. Debe abrir caja nuevamente.\n");
+                            System.out.println("--------------------------------------------------------------------\n");
+                            break;
+                        }
 
                         //Variables para el cierre caja.
                         double maximoDeposito = caja * 0.60;
@@ -679,7 +693,7 @@ public class Perez_Jiny_ProyectoTienda {
                                 montoDepositado = lea.nextDouble();
 
                                 //Validación de monto positivo.
-                                if (montoDepositado < 0) {
+                                if (montoDepositado <= 0) {
                                     System.out.println("Error: Ingrese una cantidad válida.\n");
                                     System.out.println("--------------------------------------------------------------------\n");
                                 } else if (montoDepositado > maximoDeposito) {
@@ -709,7 +723,7 @@ public class Perez_Jiny_ProyectoTienda {
                         break;
                     case 6:
                         // Opción para salir del sistema.
-                        System.out.println("Saliendo del sistema...");
+                        System.out.println("\nSaliendo del sistema...");
                         break;
 
                     default:
